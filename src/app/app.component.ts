@@ -62,7 +62,6 @@ export class AppComponent {
         let unit = dist / 3
         let angle = Math.atan2(dy, dx)
 
-        //This will be the triangular shape that makes the 'points' on the snowflake
         let p1 = {
             x: a.x + dx / 3,
             y: a.y + dy / 3
@@ -77,7 +76,6 @@ export class AppComponent {
         }
 
         if (limit > 0) {
-            // Decrease limit each time it's called
             koch(a, p1, limit - 1, branch + '0');
             koch(p1, p2, limit - 1, branch + '11');
             koch(p2, p3, limit - 1, branch + '12');
@@ -137,9 +135,21 @@ export class AppComponent {
     this.offsetY = BB.top;
   }
 
+  onMouseOutOfCanvas() {
+    if( !this.searchLock) {
+      this.draw();
+      this.hideVertexTooltip();
+    }
+  }
+
   addCanvasEventListener() {
     const canvas = this.canvas.nativeElement;
     canvas.onmousemove = ($event) => {
+
+      if (this.searchLock) {
+        return;
+      }
+
       let mouseX = $event.clientX - this.offsetX;
       let mouseY = $event.clientY - this.offsetY;
       
@@ -179,7 +189,7 @@ export class AppComponent {
     }
 
     this.clearMessage();
-
+    this.clearSearch();
     this.iteration = this.iteration + 1;
     this.draw();
   }
@@ -192,7 +202,7 @@ export class AppComponent {
     }
 
     this.clearMessage();
-
+    this.clearSearch();
     this.iteration = this.iteration - 1;
     this.draw();
   }
@@ -206,6 +216,7 @@ export class AppComponent {
   }
 
   searchVertex:string = '';
+  searchLock:boolean = false;
 
   clearSearch() {
     this.searchVertex = '';
@@ -219,12 +230,15 @@ export class AppComponent {
       let targetedVertex = this.vertexes.find(v => v.branch == this.searchVertex);
 
       if (targetedVertex) {
+        this.searchLock = true;
         this.drawVertex(targetedVertex);
         this.displayMessage(`Targeted vertex: ${targetedVertex.branch}`);
       } else {
+        this.searchLock = false;
         this.displayMessage(`Cannot find ${this.searchVertex}`);
       }
     } else {
+      this.searchLock = false;
       this.clearMessage();
     }
   }

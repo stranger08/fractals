@@ -16,7 +16,7 @@
     <span class="iteration-indicator">Iteration: {{ iteration }}</span>
 </section>
 <section>
-    <canvas #canvas (mouseout)="draw(); hideVertexTooltip()"></canvas>
+    <canvas #canvas (mouseout)="onMouseOutOfCanvas()"></canvas>
 </section>
 <section>
     <span class="message-indicator">{{ message }}</span>
