@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 
 @Component({
@@ -36,21 +36,26 @@ export class AppComponent {
     this.hideVertexTooltip();
   }
 
+  @HostListener('window:resize', ['$event'])
+  redraw(event?) {
+      this.draw();
+  }
+
   draw() {
     this.vertexes = [];
     const canvas = this.canvas.nativeElement;
     const context = this.canvas.nativeElement.getContext('2d');
-    canvas.width = 1500
-    canvas.height = 480
+    canvas.width = window.innerWidth - 200;
+    canvas.height = Math.abs(canvas.width / 3)
 
     const startingPoints = {
         p1: {
             x: 10,
-            y: 470
+            y: canvas.height - 10
         },
         p2: {
-            x: 1488,
-            y: 470
+            x: canvas.width - 20,
+            y: canvas.height - 10
         }
     }
     
@@ -76,10 +81,10 @@ export class AppComponent {
         }
 
         if (limit > 0) {
-            koch(a, p1, limit - 1, branch + '0');
+            koch(a, p1, limit - 1, branch + '10');
             koch(p1, p2, limit - 1, branch + '11');
             koch(p2, p3, limit - 1, branch + '12');
-            koch(p3, b, limit - 1, branch + '2');
+            koch(p3, b, limit - 1, branch + '20');
         } else {
             context.beginPath()
             context.moveTo(a.x, a.y)
@@ -92,8 +97,6 @@ export class AppComponent {
         this.registerVertexes([p1, p2, p3], branch);
     }
     koch(startingPoints.p1, startingPoints.p2, this.iteration, '');
-    this.registerVertex(startingPoints.p1.x, startingPoints.p1.y, 'start');
-    this.registerVertex(startingPoints.p2.x, startingPoints.p2.y, 'end');
   }
 
   registerVertexes(points, branch) {
@@ -102,7 +105,15 @@ export class AppComponent {
     }
   }
 
+  format (num, minChars) {
+    return num.toString().length < minChars
+     ? this.format(`0${num}`, minChars)
+     : num.toString()
+  }
+
   registerVertex(x, y, branch) {
+    let branchCodeLength = 1 + this.iteration * 2;
+    branch = this.format(branch, branchCodeLength);
     this.vertexes.push({
       x, y, branch
     });
@@ -234,7 +245,7 @@ export class AppComponent {
         this.drawVertex(targetedVertex);
         this.displayMessage(`Targeted vertex: ${targetedVertex.branch}`);
       } else {
-        this.searchLock = false;
+        this.searchLock = true;
         this.displayMessage(`Cannot find ${this.searchVertex}`);
       }
     } else {
