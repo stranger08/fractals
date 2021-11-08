@@ -30,6 +30,18 @@ export class TriangleTransformationsComponent implements OnInit {
     },
   }
 
+  matrix = {
+    a: 0,
+    b: 0,
+    c: 0,
+    d: 0,
+  };
+
+  offset = {
+    x: 0,
+    y: 0,
+  }
+
   constructor() { }
 
   ngOnInit(): void {

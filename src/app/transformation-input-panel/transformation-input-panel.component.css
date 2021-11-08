@@ -1,0 +1,15 @@
+form {
+    float: left;
+}
+
+input {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 75px;
+}
+
+span {
+    float: left;
+    margin-right: 10px;
+    padding: 20px 5px;
+}

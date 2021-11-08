@@ -1,5 +1,21 @@
-<app-triangle-input-panel id="start" [triangle]="triangles.start" (update)="onTriangleInputsUpdated($event)"></app-triangle-input-panel>
-<app-triangle-input-panel id="finish" [triangle]="triangles.finish" (update)="onTriangleInputsUpdated($event)"></app-triangle-input-panel>
+<section>
+    <app-triangle-input-panel
+        id="start"
+        [triangle]="triangles.start"
+        (update)="onTriangleInputsUpdated($event)">
+    </app-triangle-input-panel>
+
+    <app-triangle-input-panel
+        id="finish"
+        [triangle]="triangles.finish"
+        (update)="onTriangleInputsUpdated($event)">
+    </app-triangle-input-panel>
+    
+    <app-transformation-input-panel
+        [matrix]="matrix"
+        [offset]="offset">
+    </app-transformation-input-panel>
+</section>
 
 <section>
     <canvas #scene></canvas>
