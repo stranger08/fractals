@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-transformation-input-panel',
@@ -9,10 +9,16 @@ export class TransformationInputPanelComponent implements OnInit {
 
   constructor() { }
 
+  @Output() update: EventEmitter<any> = new EventEmitter();
+
   @Input() matrix;
   @Input() offset;
 
   ngOnInit(): void {
+  }
+
+  onKey($event) {
+    this.update.emit();
   }
 
 }
