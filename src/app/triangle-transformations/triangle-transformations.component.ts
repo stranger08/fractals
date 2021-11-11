@@ -19,12 +19,12 @@ export class TriangleTransformationsComponent implements OnInit {
 
   triangles:any = {
     start: {
-      AX: 100,
-      AY: 100,
-      BX: 100,
-      BY: 500,
-      CX: 500,
-      CY: 500,
+      AX: 0,
+      AY: 0,
+      BX: 0,
+      BY: 200,
+      CX: 200,
+      CY: 0,
     },
     finish: {
       AX: 800,
@@ -38,14 +38,14 @@ export class TriangleTransformationsComponent implements OnInit {
 
   matrix = {
     a: 1,
-    b: 0,
+    b: 2,
     c: 0,
     d: 1,
   };
 
   offset = {
-    x: 400,
-    y: 0,
+    x: 1000,
+    y: 400,
   }
 
   ngOnInit(): void {
@@ -60,11 +60,9 @@ export class TriangleTransformationsComponent implements OnInit {
     this.sceneNative = this.scene.nativeElement;
     this.sceneNative.width = window.innerWidth - 200;
     this.sceneNative.height = this.sceneNative.width / 2;
-    this.draw();
   }
 
   onTriangleInputsUpdated($event) {
-    this.draw();
   }
 
   clear() {
@@ -77,16 +75,16 @@ export class TriangleTransformationsComponent implements OnInit {
   }
 
   async draw() {
-    this.triangles.finish = this.transformService.transform(this.triangles.start, this.matrix, this.offset);
-    this.clear();
     this.drawTriangle(this.triangles.start);
-    this.drawTriangle(this.triangles.finish);
-
+    
     const frames = this.transformService.frames(250, this.triangles.start, this.matrix, this.offset);
     for (let frame of frames) {
       await this.delay(10);
       this.drawTriangle(frame, "red");
     }
+
+    this.triangles.finish = this.transformService.transform(this.triangles.start, this.matrix, this.offset);
+    this.drawTriangle(this.triangles.finish);
   }
 
   drawTriangle(t, c = "black") {

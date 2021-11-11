@@ -4,18 +4,15 @@
         [triangle]="triangles.start"
         (update)="onTriangleInputsUpdated($event)">
     </app-triangle-input-panel>
-
-    <!--<app-triangle-input-panel
-        id="finish"
-        [triangle]="triangles.finish"
-        (update)="onTriangleInputsUpdated($event)">
-    </app-triangle-input-panel>-->
     
     <app-transformation-input-panel
         [matrix]="matrix"
         [offset]="offset"
         (update)="onTriangleInputsUpdated($event)">
     </app-transformation-input-panel>
+
+    <button (click)="clear(); drawTriangle(triangles.start)">Reset</button>
+    <button (click)="draw()">Animate</button>
 </section>
 
 <section>

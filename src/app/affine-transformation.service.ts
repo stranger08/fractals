@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { multiply, add, min, abs } from 'mathjs';
+import { multiply, add, min } from 'mathjs';
 
 @Injectable({
   providedIn: 'root'
@@ -49,12 +49,13 @@ export class AffineTransformationService {
       y: min(0, offset.y),
     };
 
-    const A_STEP = abs(1 - matrix.a) / count;
-    const B_STEP = abs(0 - matrix.b) / count;
-    const C_STEP = abs(0 - matrix.c) / count;
-    const D_STEP = abs(1 - matrix.d) / count;
-    const X_STEP = abs(0 - offset.x) / count;
-    const Y_STEP = abs(0 - offset.y) / count;
+    const A_STEP = Math.abs(1 - matrix.a) / count;
+    const B_STEP = Math.abs(0 - matrix.b) / count;
+    const C_STEP = Math.abs(0 - matrix.c) / count;
+    const D_STEP = Math.abs(1 - matrix.d) / count;
+    const X_STEP = Math.abs(0 - offset.x) / count;
+    const Y_STEP = Math.abs(0 - offset.y) / count;
+
 
     const frames = [];
     for (let i = 1; i < count; i++) {
