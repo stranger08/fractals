@@ -1,0 +1,13 @@
+canvas {
+    border: 1px solid rgb(18, 7, 168);
+    background: white;
+}
+
+input {
+    margin: 0 5px;
+}
+
+app-triangle-input-panel, app-transformation-input-panel {
+    float: left;
+    margin-right: 30px;
+}

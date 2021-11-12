@@ -1,0 +1,24 @@
+<section>
+    <button (click)="prev()">Previous</button>
+    <button (click)="next()">Next</button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <form autocomplete="off" >
+        <label for="search">Search by code:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="searchVertex" type="text" id="search" name="search" (keyup)="onKey($event)">
+        <!--<button type="submit">Search</button>-->
+    </form>
+    <span class="iteration-indicator">Iteration: {{ iteration }}</span>
+</section>
+<section>
+    <canvas #canvas (mouseout)="onMouseOutOfCanvas()"></canvas>
+</section>
+<section>
+    <span class="message-indicator">{{ message }}</span>
+</section>
+
+<div #tooltip class="vertex-tooltip">
+    <span>{{ tooltipText }}</span>
+</div>

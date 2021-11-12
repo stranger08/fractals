@@ -6,10 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { KochFractalComponent } from './koch-fractal/koch-fractal.component';
+import { TriangleTransformationsComponent } from './triangle-transformations/triangle-transformations.component';
+import { TriangleInputPanelComponent } from './triangle-input-panel/triangle-input-panel.component';
+import { TransformationInputPanelComponent } from './transformation-input-panel/transformation-input-panel.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    KochFractalComponent,
+    TriangleTransformationsComponent,
+    TriangleInputPanelComponent,
+    TransformationInputPanelComponent
   ],
   imports: [
     BrowserModule,

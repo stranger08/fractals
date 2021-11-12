@@ -1,0 +1,15 @@
+<h3>Input for {{ id }} triangle</h3>
+<form autocomplete="off" >
+    <label for="a">A&nbsp;&nbsp;</label>
+    <input [(ngModel)]="triangle.AX" type="text" id="ax" name="ax" (keyup)="onKey($event)">
+    <input [(ngModel)]="triangle.AY" type="text" id="ay" name="ay" (keyup)="onKey($event)">
+
+    <label for="b">B&nbsp;&nbsp;</label>
+    <input [(ngModel)]="triangle.BX" type="text" id="bx" name="bx" (keyup)="onKey($event)">
+    <input [(ngModel)]="triangle.BY" type="text" id="by" name="by" (keyup)="onKey($event)">
+
+    <label for="c">C&nbsp;&nbsp;</label>
+    <input [(ngModel)]="triangle.CX" type="text" id="cx" name="cx" (keyup)="onKey($event)">
+    <input [(ngModel)]="triangle.CY" type="text" id="cy" name="cy" (keyup)="onKey($event)">
+</form>
+<hr />

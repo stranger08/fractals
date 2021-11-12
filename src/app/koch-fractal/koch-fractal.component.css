@@ -1,0 +1,113 @@
+header,
+nav,
+section,
+footer
+{
+  text-align: center;
+  background-color: #666666;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+header,
+nav,
+footer
+{
+  width: 100%;
+  padding: 20px;
+}
+
+header
+{
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 300;
+}
+
+h1
+{
+  margin: 0;
+}
+
+nav
+{
+  width: 25%;
+}
+
+section
+{
+  float: left;
+  width: calc(100% - 100px);
+  margin: 0 20px 20px 50px;
+  background-color: #eeeeee;
+}
+
+section header,
+section article,
+section footer
+{
+  width: 100%;
+  background-color: #999999;
+  border-radius: 5px;
+  margin: 0;
+  padding: 20px;
+}
+
+section article
+{
+  margin: 25px 0;
+}
+
+nav
+{
+  float: left;
+}
+
+nav ul
+{
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+nav li
+{
+  display: inline-block;
+  margin: 0 0 0 50px;
+  width: 100px;
+}
+
+nav li:first-child
+{
+  margin-left: 0;
+}
+
+footer
+{
+  clear: both;
+}
+
+button {
+  margin: 5px;
+}
+
+span.iteration-indicator {
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+span.message-indicator {
+  float: left;
+  font-size: 24px;
+}
+
+div.vertex-tooltip {
+  position: absolute;
+  color: black;
+  display: block;
+  width: 80px;
+  height: 40px;
+  border: 1px solid rgb(95, 95, 95);
+  background-color: #999999;
+}
