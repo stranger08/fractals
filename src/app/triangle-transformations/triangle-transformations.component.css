@@ -1,13 +1,22 @@
 canvas {
-    border: 1px solid rgb(18, 7, 168);
-    background: white;
+    border: 1px solid rgb(255, 255, 255);
 }
 
 input {
     margin: 0 5px;
 }
 
-app-triangle-input-panel, app-transformation-input-panel {
+app-triangle-input-panel,
+app-transformation-input-panel,
+app-frames-input-panel {
     float: left;
-    margin-right: 30px;
+    margin-right: 40px;
+}
+
+.animation-controls {
+    display: inline-block;
+}
+
+.animation-controls form button {
+    margin: 10px;
 }

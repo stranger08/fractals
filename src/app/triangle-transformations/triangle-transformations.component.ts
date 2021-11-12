@@ -58,7 +58,7 @@ export class TriangleTransformationsComponent implements OnInit {
   initScene() {
     this.sceneNative = this.scene.nativeElement;
     this.sceneNative.width = window.innerWidth - 200;
-    this.sceneNative.height = this.sceneNative.width / 2;
+    this.sceneNative.height = this.sceneNative.width / 3;
   }
 
   onTriangleInputsUpdated($event) {
@@ -84,21 +84,21 @@ export class TriangleTransformationsComponent implements OnInit {
       return;
     }
     this.drawing = true;
-    this.drawTriangle(this.triangles.start);
+    this.drawTriangle(this.triangles.start, "#02ABF0");
     
     const frames = this.transformService.frames(this.frames, this.triangles.start, this.matrix, this.offset);
     for (let frame of frames) {
       await this.delay(100/this.frames);
-      this.drawTriangle(frame, "red");
+      this.drawTriangle(frame, "#02ABF0");
     }
 
     this.triangles.finish = this.transformService.transform(this.triangles.start, this.matrix, this.offset);
-    this.drawTriangle(this.triangles.finish);
+    this.drawTriangle(this.triangles.finish, "#02ABF0");
     this.drawing = false;
   }
 
 
-  drawTriangle(t, c = "black") {
+  drawTriangle(t, c = "white") {
     let context = this.scene.nativeElement.getContext('2d');
     context.beginPath()
     context.moveTo(t.AX, t.AY);

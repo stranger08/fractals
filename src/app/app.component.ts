@@ -7,7 +7,7 @@ import { Chart, registerables } from 'chart.js';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'koch-fractal';
+  title = 'fractals';
 
   @ViewChild('canvas')
   canvas: ElementRef<HTMLCanvasElement>;
