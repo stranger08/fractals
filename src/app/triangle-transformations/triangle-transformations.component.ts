@@ -36,15 +36,15 @@ export class TriangleTransformationsComponent implements OnInit {
   }
 
   matrix = {
-    a: 1,
+    a: 6,
     b: 3,
     c: 2,
     d: -1,
   };
 
   offset = {
-    x: 500,
-    y: 400,
+    x: 0,
+    y: 200,
   }
 
   ngOnInit(): void {
@@ -88,7 +88,7 @@ export class TriangleTransformationsComponent implements OnInit {
     
     const frames = this.transformService.frames(this.frames, this.triangles.start, this.matrix, this.offset);
     for (let frame of frames) {
-      await this.delay(0.001);
+      await this.delay(100/this.frames);
       this.drawTriangle(frame, "red");
     }
 
