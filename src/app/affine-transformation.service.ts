@@ -41,21 +41,20 @@ export class AffineTransformationService {
 
   frames(count, triangle, matrix, offset) {
     const transformation = {
-      a: min(1, matrix.a),
-      b: min(0, matrix.b),
-      c: min(0, matrix.c),
-      d: min(1, matrix.d),
-      x: min(0, offset.x),
-      y: min(0, offset.y),
+      a: 1,
+      b: 0,
+      c: 0,
+      d: 1,
+      x: 0,
+      y: 0,
     };
 
-    const A_STEP = Math.abs(1 - matrix.a) / count;
-    const B_STEP = Math.abs(0 - matrix.b) / count;
-    const C_STEP = Math.abs(0 - matrix.c) / count;
-    const D_STEP = Math.abs(1 - matrix.d) / count;
-    const X_STEP = Math.abs(0 - offset.x) / count;
-    const Y_STEP = Math.abs(0 - offset.y) / count;
-
+    const A_STEP = (matrix.a - 1) / count;
+    const B_STEP = (matrix.b - 0) / count;
+    const C_STEP = (matrix.c - 0) / count;
+    const D_STEP = (matrix.d - 1) / count;
+    const X_STEP = (offset.x - 0) / count;
+    const Y_STEP = (offset.y - 0) / count;
 
     const frames = [];
     for (let i = 1; i < count; i++) {

@@ -1,5 +1,4 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 import { AffineTransformationService } from '../affine-transformation.service';
 
@@ -19,12 +18,12 @@ export class TriangleTransformationsComponent implements OnInit {
 
   triangles:any = {
     start: {
-      AX: 0,
-      AY: 0,
-      BX: 0,
-      BY: 200,
-      CX: 200,
-      CY: 0,
+      AX: 100,
+      AY: 100,
+      BX: 200,
+      BY: 100,
+      CX: 100,
+      CY: 200,
     },
     finish: {
       AX: 800,
@@ -38,13 +37,13 @@ export class TriangleTransformationsComponent implements OnInit {
 
   matrix = {
     a: 1,
-    b: 2,
-    c: 0,
-    d: 1,
+    b: 3,
+    c: 2,
+    d: -1,
   };
 
   offset = {
-    x: 1000,
+    x: 500,
     y: 400,
   }
 
@@ -77,15 +76,16 @@ export class TriangleTransformationsComponent implements OnInit {
   async draw() {
     this.drawTriangle(this.triangles.start);
     
-    const frames = this.transformService.frames(250, this.triangles.start, this.matrix, this.offset);
+    const frames = this.transformService.frames(500, this.triangles.start, this.matrix, this.offset);
     for (let frame of frames) {
-      await this.delay(10);
+      await this.delay(0.001);
       this.drawTriangle(frame, "red");
     }
 
     this.triangles.finish = this.transformService.transform(this.triangles.start, this.matrix, this.offset);
     this.drawTriangle(this.triangles.finish);
   }
+
 
   drawTriangle(t, c = "black") {
     let context = this.scene.nativeElement.getContext('2d');
