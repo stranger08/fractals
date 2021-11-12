@@ -11,6 +11,9 @@
         (update)="onTriangleInputsUpdated($event)">
     </app-transformation-input-panel>
 
+    <label for="frames">Frames&nbsp;&nbsp;</label>
+    <input [(ngModel)]="frames" type="text" id="frames" name="frames">
+
     <button (click)="clear(); drawTriangle(triangles.start)">Reset</button>
     <button (click)="draw()">Animate</button>
 </section>

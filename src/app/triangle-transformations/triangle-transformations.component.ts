@@ -65,6 +65,9 @@ export class TriangleTransformationsComponent implements OnInit {
   }
 
   clear() {
+    if (this.drawing) {
+      return;
+    }
     let context = this.sceneNative.getContext('2d');
     context.clearRect(0, 0, this.sceneNative.width, this.sceneNative.height);
   }
@@ -73,10 +76,17 @@ export class TriangleTransformationsComponent implements OnInit {
     return new Promise(resolve => setTimeout(resolve, time));
   }
 
+  drawing:boolean = false;
+  frames:number = 250;
+
   async draw() {
+    if (this.drawing) {
+      return;
+    }
+    this.drawing = true;
     this.drawTriangle(this.triangles.start);
     
-    const frames = this.transformService.frames(500, this.triangles.start, this.matrix, this.offset);
+    const frames = this.transformService.frames(this.frames, this.triangles.start, this.matrix, this.offset);
     for (let frame of frames) {
       await this.delay(0.001);
       this.drawTriangle(frame, "red");
@@ -84,6 +94,7 @@ export class TriangleTransformationsComponent implements OnInit {
 
     this.triangles.finish = this.transformService.transform(this.triangles.start, this.matrix, this.offset);
     this.drawTriangle(this.triangles.finish);
+    this.drawing = false;
   }
 
 
