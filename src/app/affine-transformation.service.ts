@@ -76,8 +76,6 @@ export class AffineTransformationService {
       );
     }
 
-    console.log(frames);
-
     return frames;
   }
 
