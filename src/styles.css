@@ -3,13 +3,40 @@
 html, body { height: 100%; }
 body { 
     margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #fcfff7;
-    padding: 50px;
+    font-family: Audiowide;
+    padding: 0 50px;
+    background: linear-gradient(180deg, #030514 0%, #062c5a 100%);
+}
+
+/* audiowide-regular - latin */
+@font-face {
+  font-family: 'Audiowide';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/audiowide-v9-latin/audiowide-v9-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('./assets/fonts/audiowide-v9-latin/audiowide-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./assets/fonts/audiowide-v9-latin/audiowide-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./assets/fonts/audiowide-v9-latin/audiowide-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./assets/fonts/audiowide-v9-latin/audiowide-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./assets/fonts/audiowide-v9-latin/audiowide-v9-latin-regular.svg#Audiowide') format('svg'); /* Legacy iOS */
 }
 
 *
 {
   box-sizing: border-box;
-  font-family: 'Metrophobic', Arial, serif; font-weight: 400;
+  font-family: 'Audiowide', Arial, serif; font-weight: 400;
+  color: white;
+}
+
+input, button {
+  /*background-color: rgba(54, 25, 25, .00004);*/
+  background: linear-gradient(90deg, #051735 13.16%, #042546 116.84%, #04213F 163.16%);
+  padding: 5px 10px;
+  border: 2px solid #04384D;
+  border-radius: 4px;
+}
+
+h1 {
+  margin-top: 10px;
 }

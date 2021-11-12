@@ -87,10 +87,6 @@ footer
   clear: both;
 }
 
-button {
-  margin: 5px;
-}
-
 span.iteration-indicator {
   float: right;
   font-size: 30px;
