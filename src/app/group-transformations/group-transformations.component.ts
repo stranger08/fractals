@@ -62,32 +62,32 @@ export class GroupTransformationsComponent implements OnInit {
           d: 0.52,
         },
         offset: {
-          x: -75,
+          x: -80,
           y: 70,
         }
       },
       {
         matrix: {
-          a: 0.35,
-          b: 0.4,
-          c: -0.19,
+          a: 0.40,
+          b: 0.43,
+          c: -0.29,
           d: 0.25,
         },
         offset: {
-          x: 90,
-          y: 40,
+          x: 80,
+          y: 70,
         }
       },
     {
       matrix: {
-        a: -0.5,
+        a: -0.6,
         b: 0,
         c: 0,
-        d: 0.42,
+        d: 0.50,
       },
       offset: {
-        x: 30,
-        y: -10,
+        x: 20,
+        y: 10,
       }
     },
     {
@@ -98,7 +98,7 @@ export class GroupTransformationsComponent implements OnInit {
         d: -0.5,
       },
       offset: {
-        x: 20,
+        x: 10,
         y: -90,
       }
     },
@@ -110,7 +110,7 @@ export class GroupTransformationsComponent implements OnInit {
         d: -0.496,
       },
       offset: {
-        x: 30,
+        x: 20,
         y: -90,
       }
     },
