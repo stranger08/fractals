@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 
 import { AffineTransformationService } from "../affine-transformation.service";
+
+import linear from 'linear-solve';
 
 @Component({
   selector: 'app-group-transformations',
@@ -41,6 +44,63 @@ export class GroupTransformationsComponent implements OnInit {
     }
   ];
 
+  rectangles = [
+    [
+      {
+        x: -10,
+        y: -100,
+      },
+      {
+        x: -220,
+        y: 75,
+      },
+      {
+        x: -150,
+        y: 210,
+      },
+      {
+        x: 60,
+        y: 40,
+      }
+    ],
+    [
+      {
+        x: -60,
+        y: 50,
+      },
+      {
+        x: 90,
+        y: 180,
+      },
+      {
+        x: 250,
+        y: 80,
+      },
+      {
+        x: 110,
+        y: -40,
+      }
+    ],
+    [
+      {
+        x: 140,
+        y: -100,
+      },
+      {
+        x: 140,
+        y: 100,
+      },
+      {
+        x: -100,
+        y: 100,
+      },
+      {
+        x: -100,
+        y: -100,
+      }
+    ]
+  ];
+
   matrix = {
     a: 6,
     b: 3,
@@ -54,73 +114,111 @@ export class GroupTransformationsComponent implements OnInit {
   }
 
   transformations = [
-      {
-        matrix: {
-          a: 0.2,
-          b: -0.52,
-          c: 0.3,
-          d: 0.52,
-        },
-        offset: {
-          x: -80,
-          y: 70,
-        }
-      },
-      {
-        matrix: {
-          a: 0.40,
-          b: 0.43,
-          c: -0.29,
-          d: 0.25,
-        },
-        offset: {
-          x: 80,
-          y: 70,
-        }
-      },
-    {
-      matrix: {
-        a: -0.6,
-        b: 0,
-        c: 0,
-        d: 0.50,
-      },
-      offset: {
-        x: 20,
-        y: 10,
-      }
-    },
-    {
-      matrix: {
-        a: -0.054,
-        b: -0.07,
-        c: 0.011,
-        d: -0.5,
-      },
-      offset: {
-        x: 10,
-        y: -90,
-      }
-    },
-    {
-      matrix: {
-        a: -0.056,
-        b: 0.002,
-        c: -0.055,
-        d: -0.496,
-      },
-      offset: {
-        x: 20,
-        y: -90,
-      }
-    },
+      // {
+      //   matrix: {
+      //     a: 0.2,
+      //     b: -0.52,
+      //     c: 0.3,
+      //     d: 0.52,
+      //   },
+      //   offset: {
+      //     x: -80,
+      //     y: 70,
+      //   }
+      // },
+    //   {
+    //     matrix: {
+    //       a: 0.40,
+    //       b: 0.43,
+    //       c: -0.29,
+    //       d: 0.25,
+    //     },
+    //     offset: {
+    //       x: 80,
+    //       y: 70,
+    //     }
+    //   },
+    // {
+    //   matrix: {
+    //     a: -0.6,
+    //     b: 0,
+    //     c: 0,
+    //     d: 0.50,
+    //   },
+    //   offset: {
+    //     x: 20,
+    //     y: 10,
+    //   }
+    // },
+    // {
+    //   matrix: {
+    //     a: -0.054,
+    //     b: -0.07,
+    //     c: 0.011,
+    //     d: -0.5,
+    //   },
+    //   offset: {
+    //     x: 10,
+    //     y: -90,
+    //   }
+    // },
+    // {
+    //   matrix: {
+    //     a: -0.056,
+    //     b: 0.002,
+    //     c: -0.055,
+    //     d: -0.496,
+    //   },
+    //   offset: {
+    //     x: 20,
+    //     y: -90,
+    //   }
+    // },
   ];
 
-  initScene() {
+  async initScene() {
     this.sceneNative = this.scene.nativeElement;
     this.sceneNative.width = window.innerWidth * 2/3;
     this.sceneNative.height = window.innerHeight * 8/10;
     this.drawRect(this.rectangle);
+
+    for (let r of this.rectangles) {
+      //this.drawRect(r);
+      await this.calculateTransformations(this.rectangle, r);
+    }
+  }
+
+  async calculateTransformations(origin, transformed) {
+    const X = linear.solve([
+      [origin[0].x, origin[0].y, 1],
+      [origin[1].x, origin[1].y, 1],
+      [origin[2].x, origin[2].y, 1],
+    ],
+      [transformed[0].x, transformed[1].x, transformed[2].x]
+    );
+
+    const Y = linear.solve([
+      [origin[0].x, origin[0].y, 1],
+      [origin[1].x, origin[1].y, 1],
+      [origin[2].x, origin[2].y, 1],
+    ],
+      [transformed[0].y, transformed[1].y, transformed[2].y]
+    );
+
+    const T = {
+      matrix: {
+        a: X[0],
+        b: X[1],
+        c: Y[0],
+        d: Y[1],
+      },
+      offset: {
+        x: X[2],
+        y: Y[2],
+      }
+    }
+
+    this.transformations.push(T);
   }
 
   onTransformationSettingsUpdate($event) {
