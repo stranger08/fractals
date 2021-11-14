@@ -10,6 +10,7 @@ import { KochFractalComponent } from './koch-fractal/koch-fractal.component';
 import { TriangleTransformationsComponent } from './triangle-transformations/triangle-transformations.component';
 import { TriangleInputPanelComponent } from './triangle-input-panel/triangle-input-panel.component';
 import { TransformationInputPanelComponent } from './transformation-input-panel/transformation-input-panel.component';
+import { GroupTransformationsComponent } from './group-transformations/group-transformations.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TransformationInputPanelComponent } from './transformation-input-panel/
     KochFractalComponent,
     TriangleTransformationsComponent,
     TriangleInputPanelComponent,
-    TransformationInputPanelComponent
+    TransformationInputPanelComponent,
+    GroupTransformationsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+div div {
+    display: block;
+    float: left;
+}
+
+.transformations-panel {
+    margin-left: 30px;
+    overflow-y: auto;
+    height: 80vh;
+}

@@ -1,0 +1,23 @@
+<section>
+   <div>
+      <div>
+          <canvas #scene></canvas>
+      </div>
+      <div class="transformations-panel">
+
+         <button (click)="draw()">Animate</button>
+         <button (click)="clear(); drawRect(this.rectangle)">Reset Scene</button>
+         <br />
+         <br />
+         <br />
+         <label for="iterations">Iterations&nbsp;&nbsp;</label>
+         <input [(ngModel)]="iterations" type="text" id="iterations" name="iterations" />
+  
+          <app-transformation-input-panel *ngFor="let t of transformations; index as i;"
+              [matrix]="t.matrix"
+              [offset]="t.offset"
+              (update)="onTransformationSettingsUpdate($event)">
+           </app-transformation-input-panel>
+      </div>
+  </div>
+</section>
