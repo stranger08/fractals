@@ -65,20 +65,20 @@ export class GroupTransformationsComponent implements OnInit {
     ],
     [
       {
-        x: -60,
+        x: -80,
         y: 50,
       },
       {
-        x: 90,
+        x: 70,
         y: 180,
       },
       {
-        x: 250,
-        y: 80,
+        x: 240,
+        y: 70,
       },
       {
-        x: 110,
-        y: -40,
+        x: 75,
+        y: -75,
       }
     ],
     [
@@ -97,6 +97,42 @@ export class GroupTransformationsComponent implements OnInit {
       {
         x: -100,
         y: -100,
+      }
+    ],
+    [
+      {
+        x: 30,
+        y: 0,
+      },
+      {
+        x: 20,
+        y: -190,
+      },
+      {
+        x: -10,
+        y: -180,
+      },
+      {
+        x: 0,
+        y: 10,
+      }
+    ],
+    [
+      {
+        x: 40,
+        y: -170,
+      },
+      {
+        x: 20,
+        y: -200,
+      },
+      {
+        x: -5,
+        y: -10,
+      },
+      {
+        x: 25,
+        y: 25,
       }
     ]
   ];
@@ -183,7 +219,7 @@ export class GroupTransformationsComponent implements OnInit {
     this.drawRect(this.rectangle);
 
     for (let r of this.rectangles) {
-      //this.drawRect(r);
+      this.drawRect(r);
       await this.calculateTransformations(this.rectangle, r);
     }
   }
@@ -194,7 +230,7 @@ export class GroupTransformationsComponent implements OnInit {
       [origin[1].x, origin[1].y, 1],
       [origin[2].x, origin[2].y, 1],
     ],
-      [transformed[0].x, transformed[1].x, transformed[2].x]
+      [transformed[0].x, transformed[1].x, transformed[2].x, transformed[3].x]
     );
 
     const Y = linear.solve([
@@ -249,6 +285,7 @@ export class GroupTransformationsComponent implements OnInit {
   iterations = 1;
 
   draw(depth = this.iterations, origin = this.rectangle) {
+    // FIX ME iterate over all initial rectangles to get initial shapes right. 
     for (let t of this.transformations) {
       console.log(origin);
       let transformed = this.transformationService.transformAll(origin, t.matrix, t.offset);
