@@ -66,11 +66,11 @@ export class GroupTransformationsComponent implements OnInit {
     [
       {
         x: -80,
-        y: 50,
+        y: 30,
       },
       {
         x: 70,
-        y: 180,
+        y: 170,
       },
       {
         x: 240,
@@ -88,11 +88,11 @@ export class GroupTransformationsComponent implements OnInit {
       },
       {
         x: 140,
-        y: 100,
+        y: 95,
       },
       {
         x: -100,
-        y: 100,
+        y: 95,
       },
       {
         x: -100,
@@ -101,38 +101,38 @@ export class GroupTransformationsComponent implements OnInit {
     ],
     [
       {
-        x: 30,
+        x: 5,
         y: 0,
+      },
+      {
+        x: 30,
+        y: -10,
       },
       {
         x: 20,
         y: -190,
       },
       {
-        x: -10,
+        x: -5,
         y: -180,
       },
-      {
-        x: 0,
-        y: 10,
-      }
     ],
     [
       {
-        x: 40,
+        x: 45,
         y: -170,
       },
       {
-        x: 20,
+        x: 22,
         y: -200,
       },
       {
-        x: -5,
-        y: -10,
+        x: 0,
+        y: -20,
       },
       {
         x: 25,
-        y: 25,
+        y: 15,
       }
     ]
   ];
@@ -229,6 +229,7 @@ export class GroupTransformationsComponent implements OnInit {
       [origin[0].x, origin[0].y, 1],
       [origin[1].x, origin[1].y, 1],
       [origin[2].x, origin[2].y, 1],
+      [origin[3].x, origin[3].y, 1],
     ],
       [transformed[0].x, transformed[1].x, transformed[2].x, transformed[3].x]
     );
@@ -237,8 +238,9 @@ export class GroupTransformationsComponent implements OnInit {
       [origin[0].x, origin[0].y, 1],
       [origin[1].x, origin[1].y, 1],
       [origin[2].x, origin[2].y, 1],
+      [origin[3].x, origin[3].y, 1],
     ],
-      [transformed[0].y, transformed[1].y, transformed[2].y]
+      [transformed[0].y, transformed[1].y, transformed[2].y, transformed[3].y]
     );
 
     const T = {
