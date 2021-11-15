@@ -244,9 +244,15 @@ export class GroupTransformationsComponent implements OnInit {
     }
   }
 
+  // TODO try doing this iteratively, should give performance boost.
+
   redraw() {
+    this.showSpinner(true);
     this.clear();
-    this.draw();
+    setTimeout(() => {
+      this.draw();
+      this.showSpinner(false);
+    }, 1);
   }
 
   clear() {

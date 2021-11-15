@@ -2,7 +2,10 @@
    <div>
       <div>
          <canvas #scene></canvas>
-         <sa-spinner-circular [enabled]="loading" color="white" size="200px"></sa-spinner-circular>
+         <!--<sa-spinner-circular [enabled]="loading" color="white" size="200px"></sa-spinner-circular>-->
+         <div *ngIf="loading" class=loader-container>
+            <div class="loader"></div>
+         </div>
       </div>
       <div class="transformations-panel">
          <button (click)="redraw();">Draw</button>
