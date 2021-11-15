@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms'; // <--- JavaScript import from
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SpinnerCircularModule } from 'spinners-angular/spinner-circular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KochFractalComponent } from './koch-fractal/koch-fractal.component';
 import { TriangleTransformationsComponent } from './triangle-transformations/triangle-transformations.component';
@@ -26,9 +27,10 @@ import { GroupTransformationsComponent } from './group-transformations/group-tra
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SpinnerCircularModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

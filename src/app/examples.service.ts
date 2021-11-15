@@ -7,6 +7,21 @@ export class ExamplesService {
 
   constructor() { }
 
+  exact() {
+      return {
+        "matrix": {
+            "a": 1,
+            "b": 0,
+            "c": 0,
+            "d": 1
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        }
+    };
+  }
+
   tree() {
     return [
       {
@@ -17,8 +32,8 @@ export class ExamplesService {
               "d": 0.4375
           },
           "offset": {
-              "x": -80,
-              "y": 55
+              "x": -120,
+              "y": 80
           }
       },
       {
@@ -29,8 +44,8 @@ export class ExamplesService {
               "d": 0.35000000000000003
           },
           "offset": {
-              "x": 80,
-              "y": 50
+              "x": 100,
+              "y": 70
           }
       },
       {
@@ -53,8 +68,8 @@ export class ExamplesService {
               "d": -0.025
           },
           "offset": {
-              "x": 12.5,
-              "y": -95
+              "x": 14,
+              "y": -150
           }
       },
       {
@@ -65,8 +80,8 @@ export class ExamplesService {
               "d": -0.075
           },
           "offset": {
-              "x": 22.5,
-              "y": -95
+              "x": 30,
+              "y": -150
           }
       }
     ]

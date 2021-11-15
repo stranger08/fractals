@@ -16,6 +16,8 @@ export class GroupTransformationsComponent implements OnInit {
   scene: ElementRef<HTMLCanvasElement>;
   sceneNative;
 
+  loading = false;
+
   constructor(
     private examplesService: ExamplesService,
     private transformationService: AffineTransformationService
@@ -33,20 +35,20 @@ export class GroupTransformationsComponent implements OnInit {
 
   rectangle = [
     {
-      x: -200,
-      y: -200,
+      x: -300,
+      y: -300,
     },
     {
-      x: -200,
-      y: 200,
+      x: -300,
+      y: 300,
     },
     {
-      x: 200,
-      y: 200,
+      x: 300,
+      y: 300,
     },
     {
-      x: 200,
-      y: -200,
+      x: 300,
+      y: -300,
     }
   ];
 
@@ -155,68 +157,7 @@ export class GroupTransformationsComponent implements OnInit {
     y: 200,
   }
 
-  transformations = [
-      // {
-      //   matrix: {
-      //     a: 0.2,
-      //     b: -0.52,
-      //     c: 0.3,
-      //     d: 0.52,
-      //   },
-      //   offset: {
-      //     x: -80,
-      //     y: 70,
-      //   }
-      // },
-    //   {
-    //     matrix: {
-    //       a: 0.40,
-    //       b: 0.43,
-    //       c: -0.29,
-    //       d: 0.25,
-    //     },
-    //     offset: {
-    //       x: 80,
-    //       y: 70,
-    //     }
-    //   },
-    // {
-    //   matrix: {
-    //     a: -0.6,
-    //     b: 0,
-    //     c: 0,
-    //     d: 0.50,
-    //   },
-    //   offset: {
-    //     x: 20,
-    //     y: 10,
-    //   }
-    // },
-    // {
-    //   matrix: {
-    //     a: -0.054,
-    //     b: -0.07,
-    //     c: 0.011,
-    //     d: -0.5,
-    //   },
-    //   offset: {
-    //     x: 10,
-    //     y: -90,
-    //   }
-    // },
-    // {
-    //   matrix: {
-    //     a: -0.056,
-    //     b: 0.002,
-    //     c: -0.055,
-    //     d: -0.496,
-    //   },
-    //   offset: {
-    //     x: 20,
-    //     y: -90,
-    //   }
-    // },
-  ];
+  transformations = [];
 
   async initScene() {
     this.sceneNative = this.scene.nativeElement;
@@ -303,9 +244,27 @@ export class GroupTransformationsComponent implements OnInit {
     }
   }
 
+  redraw() {
+    this.clear();
+    this.draw();
+  }
+
   clear() {
     let context = this.sceneNative.getContext('2d');
     context.clearRect(0, 0, this.sceneNative.width, this.sceneNative.height);
+  }
+
+  removeTransformation(i) {
+    this.transformations.splice(i, 1)
+  }
+
+  addTransformation() {
+    const DEFAULT_TRANSFORMATION = this.examplesService.exact();
+    this.transformations.push(DEFAULT_TRANSFORMATION);
+  }
+
+  showSpinner(show) {
+    this.loading = !!show;
   }
 
 }

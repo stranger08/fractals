@@ -16,7 +16,3 @@ app-frames-input-panel {
 .animation-controls form button {
     margin: 10px;
 }
-
-button:hover {
-    border: 2px solid white;
-}

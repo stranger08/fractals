@@ -1,11 +1,11 @@
 <section>
    <div>
       <div>
-          <canvas #scene></canvas>
+         <canvas #scene></canvas>
+         <sa-spinner-circular [enabled]="loading" color="white" size="200px"></sa-spinner-circular>
       </div>
       <div class="transformations-panel">
-
-         <button (click)="draw()">Animate</button>
+         <button (click)="redraw();">Draw</button>
          <button (click)="clear(); drawRect(this.rectangle)">Reset Scene</button>
          <br />
          <br />
@@ -13,11 +13,21 @@
          <label for="iterations">Iterations&nbsp;&nbsp;</label>
          <input [(ngModel)]="iterations" type="text" id="iterations" name="iterations" />
   
-          <app-transformation-input-panel *ngFor="let t of transformations; index as i;"
-              [matrix]="t.matrix"
-              [offset]="t.offset"
-              (update)="onTransformationSettingsUpdate($event)">
-           </app-transformation-input-panel>
+         <section *ngFor="let t of transformations; index as i;">
+            <app-transformation-input-panel 
+               [matrix]="t.matrix"
+               [offset]="t.offset"
+               (update)="onTransformationSettingsUpdate($event)">
+            </app-transformation-input-panel>
+            <button
+               class="remove-transformation"
+               (click)="removeTransformation(i)">
+               X
+            </button>
+         </section>
+         <section>
+            <button (click)="addTransformation()">Add</button>
+         </section>
       </div>
   </div>
 </section>

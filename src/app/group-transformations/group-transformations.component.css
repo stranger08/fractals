@@ -8,3 +8,14 @@ div div {
     overflow-y: auto;
     height: 80vh;
 }
+
+.remove-transformation {
+    color: red;
+}
+
+sa-spinner-circular {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px;
+}
