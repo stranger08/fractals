@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
 
-import { AffineTransformationService } from "../affine-transformation.service";
+import { AffineTransformationService } from '../affine-transformation.service';
+import { ExamplesService } from '../examples.service';
 
 import linear from 'linear-solve';
 
@@ -16,9 +16,15 @@ export class GroupTransformationsComponent implements OnInit {
   scene: ElementRef<HTMLCanvasElement>;
   sceneNative;
 
-  constructor(private transformationService: AffineTransformationService) { }
+  constructor(
+    private examplesService: ExamplesService,
+    private transformationService: AffineTransformationService
+  ) { 
+
+  }
 
   ngOnInit(): void {
+    this.transformations = this.examplesService.tree();
   }
 
   ngAfterViewInit() {
@@ -218,10 +224,10 @@ export class GroupTransformationsComponent implements OnInit {
     this.sceneNative.height = window.innerHeight * 8/10;
     this.drawRect(this.rectangle);
 
-    for (let r of this.rectangles) {
-      this.drawRect(r);
-      await this.calculateTransformations(this.rectangle, r);
-    }
+    // for (let r of this.rectangles) {
+    //   this.drawRect(r);
+    //   await this.calculateTransformations(this.rectangle, r);
+    // }
   }
 
   async calculateTransformations(origin, transformed) {
@@ -287,11 +293,8 @@ export class GroupTransformationsComponent implements OnInit {
   iterations = 1;
 
   draw(depth = this.iterations, origin = this.rectangle) {
-    // FIX ME iterate over all initial rectangles to get initial shapes right. 
     for (let t of this.transformations) {
-      console.log(origin);
       let transformed = this.transformationService.transformAll(origin, t.matrix, t.offset);
-      console.log(transformed);
       if (depth == 0) {
         this.drawRect(transformed);
       } else {
