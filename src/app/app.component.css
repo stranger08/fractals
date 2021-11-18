@@ -1,4 +1,13 @@
-header {
+h1 {
     color: white;
     text-align: center;
+}
+
+div.header div :nth-last-child {
+    text-align: right;
+}
+
+div.header div {
+    display: inline-block;
+    width: 20%;
 }

@@ -39,6 +39,16 @@ export class AffineTransformationService {
     }
   }
 
+  transformAll(points, matrix, offset) {
+    return points.map(p => {
+      let transformed = this._transformPoint(p.x, p.y, matrix, offset);
+      return {
+        x: transformed[0],
+        y: transformed[1],
+      }
+    });
+  }
+
   frames(count, triangle, matrix, offset) {
     const transformation = {
       a: 1,

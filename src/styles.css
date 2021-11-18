@@ -37,6 +37,24 @@ input, button {
   border-radius: 4px;
 }
 
+canvas {
+  border: 2px solid #04384D;
+  border-radius: 4px;
+}
+
 h1 {
   margin-top: 10px;
+}
+
+button:hover {
+  border: 2px solid white;
+}
+
+select {
+  width: 150px;
+  background: transparent;
+  padding: 5px 10px;
+  border: 2px solid #04384D;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }

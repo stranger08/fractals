@@ -1,8 +1,31 @@
-<header>
-    <h1>FRACTALS</h1>
-</header>
+<div class="header">
+    <div>
+        &nbsp;
+    </div>
+    <div>
+        &nbsp;
+    </div>
+    <div>
+        <header>
+            <h1>FRACTALS</h1>
+            </header>
+    </div>
+    <div>
+        &nbsp;
+    </div>
+    <div>
+        <label for="labs">Lab: &nbsp;</label>
+        <select name="labs" id="labs" [(ngModel)]="lab">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+</div>
 <!--<app-fractals></app-fractals>-->
-<app-triangle-transformations></app-triangle-transformations>
+<app-triangle-transformations *ngIf="lab == 2"></app-triangle-transformations>
+<app-group-transformations *ngIf="lab == 3"></app-group-transformations>
 
 <!-- <h3 *ngIf="!enoughArea">
     Minimal viewport size to use application is 640x480, please adjust broswer window size and reload the page.

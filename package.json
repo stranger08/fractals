@@ -25,8 +25,10 @@
     "@ng-bootstrap/ng-bootstrap": "^8.0.4",
     "bootstrap": "^4.5.0",
     "chart.js": "^3.6.0",
+    "linear-solve": "^1.2.1",
     "mathjs": "^10.0.0",
     "rxjs": "~6.6.0",
+    "spinners-angular": "0.0.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
