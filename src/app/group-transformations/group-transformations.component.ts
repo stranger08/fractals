@@ -273,4 +273,27 @@ export class GroupTransformationsComponent implements OnInit {
     this.loading = !!show;
   }
 
+  examples:any = [
+    {
+      name: "Tree",
+      transformations: this.examplesService.tree(),
+    },
+    {
+      name: "Exact",
+      transformations: [this.examplesService.exact()],
+    },
+    {
+      name: "Triangle",
+      transformations: this.examplesService.triangle(),
+    },
+    {
+      name: "Levels",
+      transformations: this.examplesService.levels(),
+    }
+  ];
+
+  loadExamples(i) {
+    this.transformations = this.examples[i].transformations;
+  }
+
 }

@@ -10,6 +10,11 @@
       <div class="transformations-panel">
          <button (click)="redraw();">Draw</button>
          <button (click)="clear(); drawRect(this.rectangle)">Reset Scene</button>
+         <select (change)="loadExamples($event.target.value)">
+            <option *ngFor="let e of examples; index as i;" value="{{ i }}">
+               {{ e.name }}
+            </option>
+         </select>
          <br />
          <br />
          <br />
