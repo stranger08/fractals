@@ -1,0 +1,24 @@
+.control-panel {
+    margin-left: 30px;
+    overflow-y: auto;
+}
+
+form button {
+    width: 10%;
+}
+
+form input {
+    width: 5%;
+}
+
+form input.reproduction {
+    width: 50%
+}
+
+form label {
+    margin: 0;
+} 
+
+form * {
+    margin: 0 2%
+}

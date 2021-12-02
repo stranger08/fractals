@@ -1,0 +1,21 @@
+<section>
+    <div>
+       <div>
+          <canvas #scene></canvas>
+          <!--<sa-spinner-circular [enabled]="loading" color="white" size="200px"></sa-spinner-circular>-->
+          <div *ngIf="loading" class=loader-container>
+             <div class="loader"></div>
+          </div>
+       </div>
+       <div class="control-panel">
+          <form autocomplete="off" >
+            <label for="iterations">Iterations:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="iterations" type="text" id="iterations" name="iterations" />
+            <button (click)="redraw()">Draw</button>
+            <button (click)="clear()">Reset Scene</button>
+            <input class="reproduction" [(ngModel)]="formula" type="text" id="formula" name="formula">
+          </form>
+       </div>
+   </div>
+ </section>
+ 

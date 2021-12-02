@@ -12,6 +12,7 @@ import { TriangleTransformationsComponent } from './triangle-transformations/tri
 import { TriangleInputPanelComponent } from './triangle-input-panel/triangle-input-panel.component';
 import { TransformationInputPanelComponent } from './transformation-input-panel/transformation-input-panel.component';
 import { GroupTransformationsComponent } from './group-transformations/group-transformations.component';
+import { LSystemsComponent } from './l-systems/l-systems.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GroupTransformationsComponent } from './group-transformations/group-tra
     TriangleTransformationsComponent,
     TriangleInputPanelComponent,
     TransformationInputPanelComponent,
-    GroupTransformationsComponent
+    GroupTransformationsComponent,
+    LSystemsComponent
   ],
   imports: [
     BrowserModule,
