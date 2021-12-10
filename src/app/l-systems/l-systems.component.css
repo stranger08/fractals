@@ -4,6 +4,7 @@
 }
 
 form button {
+    margin-top: 20px;
     width: 10%;
 }
 
@@ -11,8 +12,14 @@ form input {
     width: 5%;
 }
 
+form input.axioma {
+    margin-top: 20px;
+    width: 10%
+}
+
 form input.reproduction {
-    width: 50%
+    margin-top: 20px;
+    width: 80%
 }
 
 form label {

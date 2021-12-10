@@ -22,7 +22,7 @@
          <input [(ngModel)]="iterations" type="text" id="iterations" name="iterations" />
   
          <section *ngFor="let t of transformations; index as i;">
-            <app-transformation-input-panel 
+            <app-transformation-input-panel
                [matrix]="t.matrix"
                [offset]="t.offset"
                (update)="onTransformationSettingsUpdate($event)">
