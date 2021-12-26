@@ -24,7 +24,7 @@
     "@angular/router": "~10.1.0",
     "@ng-bootstrap/ng-bootstrap": "^8.0.4",
     "bootstrap": "^4.5.0",
-    "chart.js": "^3.6.0",
+    "chart.js": "^2.9.3",
     "linear-solve": "^1.2.1",
     "mathjs": "^10.0.0",
     "real-turtle": "^1.0.15",

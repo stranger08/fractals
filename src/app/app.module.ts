@@ -13,6 +13,7 @@ import { TriangleInputPanelComponent } from './triangle-input-panel/triangle-inp
 import { TransformationInputPanelComponent } from './transformation-input-panel/transformation-input-panel.component';
 import { GroupTransformationsComponent } from './group-transformations/group-transformations.component';
 import { LSystemsComponent } from './l-systems/l-systems.component';
+import { DynamicSystemComponent } from './dynamic-system/dynamic-system.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LSystemsComponent } from './l-systems/l-systems.component';
     TriangleInputPanelComponent,
     TransformationInputPanelComponent,
     GroupTransformationsComponent,
-    LSystemsComponent
+    LSystemsComponent,
+    DynamicSystemComponent
   ],
   imports: [
     BrowserModule,

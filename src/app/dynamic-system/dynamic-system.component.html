@@ -1,0 +1,40 @@
+<section>
+    <div>
+       <div>
+          <canvas #scene></canvas>
+          <div *ngIf="loading" class=loader-container>
+             <div class="loader"></div>
+          </div>
+       </div>
+       <div class="transformations-panel">
+        <p>f(x) = ax / (1+rx)^5</p>
+        <br />
+        <br />
+        <label for="a">a:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="a" type="text" id="a" name="a" />
+        <br />
+        <br />
+        <label for="r">r:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="r" type="text" id="r" name="r" />
+        <br />
+        <br />
+        <label for="x0">x:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="x0" type="text" id="x0" name="x0" />
+        <br />
+        <br />
+        <label for="x0">i:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="i" type="text" id="i" name="i" />
+        <br />
+        <br />
+        <button (click)="drawTimeline();">Draw Timeline</button>
+        &nbsp;
+        <button (click)="drawIteration();">Draw Iteration</button>
+        <br />
+        <br />
+        <button (click)="drawFeigenbaum();">Draw Feigenbaum</button>
+        &nbsp;
+        <button (click)="clear();">Reset Scene</button>
+     </div>
+   </div>
+ </section>
+ 

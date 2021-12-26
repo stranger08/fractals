@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild, HostListener } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ export class AppComponent {
   @ViewChild('canvas')
   canvas: ElementRef<HTMLCanvasElement>;
 
-  lab = 4;
+  lab = 6;
 
   @ViewChild('tooltip')
   vertexTooltip: ElementRef<HTMLDivElement>;
@@ -21,7 +20,6 @@ export class AppComponent {
   public context: CanvasRenderingContext2D;
 
   constructor() {
-    Chart.register(...registerables);
   }
 
 }
