@@ -1,0 +1,50 @@
+<section>
+    <div>
+       <div>
+          <canvas #scene></canvas>
+          <div *ngIf="loading" class=loader-container>
+             <div class="loader"></div>
+          </div>
+       </div>
+       <div class="transformations-panel">
+        <br />
+        <br />
+        <label for="a">&lambda;:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="lambda" type="text" id="lambda" name="lambda" />
+        <br />
+        <br />
+        <label for="escapeRadius">Esc:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="escapeRadius" type="text" id="escapeRadius" name="escapeRadius" />
+        <br />
+        <br />
+        <label for="size">Grid:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="size" type="text" id="size" name="size" />
+        <br />
+        <br />
+        <label for="size">Lower bound x:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="gridX0" type="range" id="gridX0" class="slider" name="gridX0" min="-2" max="2" step="0.1">
+        ({{ gridX0 }})
+        <br />
+        <br />
+        <label for="size">Upper bound x:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="gridX1" type="range" id="gridX1" class="slider" name="gridX1" min="-2" max="2" step="0.1">
+        ({{ gridX1 }})
+        <br />
+        <br />
+        <label for="size">Lower bound y:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="gridY0" type="range" id="gridY0" class="slider" name="gridY0" min="-2" max="2" step="0.1">
+        ({{ gridY0 }})
+        <br />
+        <br />
+        <label for="size">Upper bound y:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="gridY1" type="range" id="gridY1" class="slider" name="gridY1" min="-2" max="2" step="0.1">
+        ({{ gridY1 }})
+        <br />
+        <br />
+        <button (click)="redraw();">Draw</button>
+        &nbsp;
+        <button (click)="clear();">Reset Scene</button>
+     </div>
+   </div>
+ </section>
+ 

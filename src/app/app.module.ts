@@ -14,6 +14,7 @@ import { TransformationInputPanelComponent } from './transformation-input-panel/
 import { GroupTransformationsComponent } from './group-transformations/group-transformations.component';
 import { LSystemsComponent } from './l-systems/l-systems.component';
 import { DynamicSystemComponent } from './dynamic-system/dynamic-system.component';
+import { JuliaSetsComponent } from './julia-sets/julia-sets.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DynamicSystemComponent } from './dynamic-system/dynamic-system.componen
     TransformationInputPanelComponent,
     GroupTransformationsComponent,
     LSystemsComponent,
-    DynamicSystemComponent
+    DynamicSystemComponent,
+    JuliaSetsComponent
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@ export class AppComponent {
   @ViewChild('canvas')
   canvas: ElementRef<HTMLCanvasElement>;
 
-  lab = 6;
+  lab = 7;
 
   @ViewChild('tooltip')
   vertexTooltip: ElementRef<HTMLDivElement>;

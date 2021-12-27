@@ -48,7 +48,7 @@ export class DynamicSystemComponent implements OnInit {
   a:number = 30;
   r:number = 1/20;
   x0:number = 1;
-  i:number = 50;
+  i:number = 350;
 
 
   drawTimeline() {
@@ -124,7 +124,7 @@ export class DynamicSystemComponent implements OnInit {
         showLine: true,
         lineTension: 0,
       }
-  ];
+    ];
 
 
     for (let i = 0; i < this.i; i++) {
