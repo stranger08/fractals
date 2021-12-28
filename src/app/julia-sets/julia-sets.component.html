@@ -1,50 +1,69 @@
 <section>
-    <div>
-       <div>
-          <canvas #scene></canvas>
-          <div *ngIf="loading" class=loader-container>
-             <div class="loader"></div>
-          </div>
-       </div>
-       <div class="transformations-panel">
-        <br />
-        <br />
-        <label for="a">&lambda;:&nbsp;&nbsp;</label>
-        <input [(ngModel)]="lambda" type="text" id="lambda" name="lambda" />
-        <br />
-        <br />
-        <label for="escapeRadius">Esc:&nbsp;&nbsp;</label>
-        <input [(ngModel)]="escapeRadius" type="text" id="escapeRadius" name="escapeRadius" />
-        <br />
-        <br />
-        <label for="size">Grid:&nbsp;&nbsp;</label>
-        <input [(ngModel)]="size" type="text" id="size" name="size" />
-        <br />
-        <br />
-        <label for="size">Lower bound x:&nbsp;&nbsp;</label>
-        <input [(ngModel)]="gridX0" type="range" id="gridX0" class="slider" name="gridX0" min="-2" max="2" step="0.1">
-        ({{ gridX0 }})
-        <br />
-        <br />
-        <label for="size">Upper bound x:&nbsp;&nbsp;</label>
-        <input [(ngModel)]="gridX1" type="range" id="gridX1" class="slider" name="gridX1" min="-2" max="2" step="0.1">
-        ({{ gridX1 }})
-        <br />
-        <br />
-        <label for="size">Lower bound y:&nbsp;&nbsp;</label>
-        <input [(ngModel)]="gridY0" type="range" id="gridY0" class="slider" name="gridY0" min="-2" max="2" step="0.1">
-        ({{ gridY0 }})
-        <br />
-        <br />
-        <label for="size">Upper bound y:&nbsp;&nbsp;</label>
-        <input [(ngModel)]="gridY1" type="range" id="gridY1" class="slider" name="gridY1" min="-2" max="2" step="0.1">
-        ({{ gridY1 }})
-        <br />
-        <br />
-        <button (click)="redraw();">Draw</button>
-        &nbsp;
-        <button (click)="clear();">Reset Scene</button>
+    <div *ngIf="loading" class=loader-container>
+        <div class="loader"></div>
+    </div>
+    <div class="container">
+        <div class="column-center">
+            <h1>Mandelbrot Set</h1>
+            <canvas #mandelbrot></canvas>
+        </div>
+        <div class="column-left">
+            <h1>Julia Set</h1>
+            <canvas #julia></canvas>
+        </div>
+        <div class="column-right"> 
+            <h1>Newton</h1>
+        </div>
      </div>
-   </div>
+     <br />
+     <br />
+     <div class="container">
+        <div class="column-center">
+            <h1>Complex plane dimensions</h1>
+            <label for="size">Lower bound x:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="gridX0" type="range" id="gridX0" class="slider" name="gridX0" min="-2" max="2" step="0.1">
+            ({{ gridX0 }})
+            <br />
+            <br />
+            <label for="size">Upper bound x:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="gridX1" type="range" id="gridX1" class="slider" name="gridX1" min="-2" max="2" step="0.1">
+            ({{ gridX1 }})
+            <br />
+            <br />
+            <label for="size">Lower bound y:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="gridY0" type="range" id="gridY0" class="slider" name="gridY0" min="-2" max="2" step="0.1">
+            ({{ gridY0 }})
+            <br />
+            <br />
+            <label for="size">Upper bound y:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="gridY1" type="range" id="gridY1" class="slider" name="gridY1" min="-2" max="2" step="0.1">
+            ({{ gridY1 }})
+        </div>
+        <div class="column-left">
+            <h1>Parameters</h1>
+            <label for="a">&lambda;:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="lambda" type="text" id="lambda" name="lambda" />
+            <br />
+            <br />
+            <label for="escapeRadius">Esc:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="escapeRadius" type="text" id="escapeRadius" name="escapeRadius" />
+            <br />
+            <br />
+            <label for="fz">f(z): &nbsp;</label>
+            <select name="fz" id="fz" [(ngModel)]="fz">
+                <option value="1">z^7 + z^3 + &lambda;</option>
+                <option value="2">z^2 + &lambda;</option>
+                <option value="3">z^4 - z^2 + &lambda;</option>
+            </select>
+        </div>
+        <div class="column-right"> 
+            <h1>Actions</h1>
+            <button (click)="redrawMandelbrot();">Draw Mandelbrot</button>
+            &nbsp;
+            <button (click)="redrawJulia();">Draw Julia</button>
+            &nbsp;
+            <button (click)="clear();">Reset Scene</button>
+        </div>
+     </div>
  </section>
  
