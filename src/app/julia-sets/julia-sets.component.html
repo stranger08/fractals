@@ -12,7 +12,8 @@
             <canvas #julia></canvas>
         </div>
         <div class="column-right"> 
-            <h1>Newton</h1>
+            <h1>Newton Set</h1>
+            <canvas #newton></canvas>
         </div>
      </div>
      <br />
@@ -54,6 +55,7 @@
                 <option value="1">z^7 + z^3 + &lambda;</option>
                 <option value="2">z^2 + &lambda;</option>
                 <option value="3">z^4 - z^2 + &lambda;</option>
+                <option value="4">&lambda; * z^3 + z^2 + &lambda;</option>
             </select>
         </div>
         <div class="column-right"> 
@@ -62,6 +64,14 @@
             &nbsp;
             <button (click)="redrawJulia();">Draw Julia</button>
             &nbsp;
+            <button (click)="redrawNewton();">Draw Newton</button>
+            <br />
+            <div *ngIf="showRoots">
+                <p *ngFor="let root of roots">
+                    {{ root }}
+                </p>
+            </div>
+            <br />
             <button (click)="clear();">Reset Scene</button>
         </div>
      </div>

@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import * as Chart from 'chart.js';
 import * as MathJS from 'mathjs';
 
 @Component({
@@ -8,6 +7,62 @@ import * as MathJS from 'mathjs';
   styleUrls: ['./julia-sets.component.css']
 })
 export class JuliaSetsComponent implements OnInit {
+
+  COLOR_SET:any = [
+    '#c1c5f5',
+    '#abafeb',
+    '#959be6',
+    '#7d84e3',
+    '#626ade',
+    '#2732cf',
+    '#0713ba',
+    '#040d87',
+    '#c1c5f5',
+    '#abafeb',
+    '#959be6',
+    '#7d84e3',
+    '#626ade',
+    '#2732cf',
+    '#0713ba',
+    '#040d87',
+    '#c1c5f5',
+    '#abafeb',
+    '#959be6',
+    '#7d84e3',
+    '#626ade',
+    '#2732cf',
+    '#0713ba',
+    '#040d87',
+    '#c1c5f5',
+    '#abafeb',
+    '#959be6',
+    '#7d84e3',
+    '#626ade',
+    '#2732cf',
+    '#0713ba',
+    '#040d87',
+    '#c1c5f5',
+    '#abafeb',
+    '#959be6',
+    '#7d84e3',
+    '#626ade',
+    '#2732cf',
+    '#0713ba',
+    '#040d87',
+    '#c1c5f5',
+    '#abafeb',
+    '#959be6',
+  ].reverse();
+
+  ROOT_COLOR_SET:any = [
+    '#2732cf',
+    '#0713ba',
+    '#040d87',
+    '#c1c5f5',
+    '#abafeb',
+    '#959be6',
+    '#7d84e3',
+  ]
 
   constructor() { }
 
@@ -24,9 +79,13 @@ export class JuliaSetsComponent implements OnInit {
   @ViewChild('julia')
   julia: ElementRef<HTMLCanvasElement>;
 
+  @ViewChild('newton')
+  newton: ElementRef<HTMLCanvasElement>;
+
   async initScene() {
     this.setDefaultDimensions(this.getContext(this.mandelbrot));
     this.setDefaultDimensions(this.getContext(this.julia));
+    this.setDefaultDimensions(this.getContext(this.newton));
     this.addCanvasEventListener();
   }
 
@@ -50,6 +109,10 @@ export class JuliaSetsComponent implements OnInit {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     context =  this.getContext(this.julia);
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    context =  this.getContext(this.newton);
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    this.showRoots = false;
+    this.roots = [];
   }
 
   size:number=1;
@@ -74,13 +137,20 @@ export class JuliaSetsComponent implements OnInit {
     }, 1);
   }
 
+  redrawNewton() {
+    this.showSpinner(true);
+    setTimeout(() => {
+      this.drawNewton();
+      this.showSpinner(false);
+    }, 1);
+  }
+
   drawMandelbrot() {
     let context = this.getContext(this.mandelbrot);
 
     for (let x = 0; x < context.canvas.width; x = x + this.size) {
       for (let y = 0; y < context.canvas.height; y = y + this.size) {
           let z = this.toComplex(x, y);
-          // Maldelbrot set
           context.fillStyle = this.escape(MathJS.complex(0, 0), z);
           context.fillRect(x, y, this.size, this.size);
       }
@@ -93,69 +163,58 @@ export class JuliaSetsComponent implements OnInit {
     for (let x = 0; x < context.canvas.width; x = x + this.size) {
       for (let y = 0; y < context.canvas.height; y = y + this.size) {
           let z = this.toComplex(x, y);
-          // Julia set
           context.fillStyle = this.escape(z, MathJS.complex(this.lambda));
           context.fillRect(x, y, this.size, this.size);
       }
     }
   }
 
+  r:string = '0.0001';
+  showRoots:boolean = false;
+  roots:any = [];
+
+  drawNewton() {
+    let context = this.getContext(this.newton);
+    let d = (x, y) => Math.sqrt((y.re - x.re)**2 + (y.im - x.im)**2);
+    let roots = [];
+    let rootsD = [];
+    console.log(context.canvas.width * context.canvas.height);
+
+    for (let x = 0; x < context.canvas.width; x = x + this.size) {
+      for (let y = 0; y < context.canvas.height; y = y + this.size) {
+          let z = this.toComplex(x, y);
+          let ninth = this.fnewton(z, this.lambda, 9);
+          let tenth = this.fnewton(z, this.lambda, 10);
+          let distance = d(ninth, tenth);
+
+          if (parseFloat(this.r) > distance) {
+            let rootIndex = roots.findIndex(root => parseFloat(this.r) > d(root, tenth));
+            if (rootIndex > -1) {
+              context.fillStyle = this.ROOT_COLOR_SET[rootIndex];
+            } else {
+              roots.push(tenth);
+              rootsD.push(d(ninth, tenth));
+              context.fillStyle = this.ROOT_COLOR_SET[roots.length - 1];
+            }
+          } else {
+            context.fillStyle = '#000000'
+          }
+          context.fillRect(x, y, this.size, this.size);
+      }
+    }
+    this.showRoots = true;
+    this.roots = roots.map(r => r.toString());
+  }
+
   escapeRadius:number = 2;
 
   escape(z, l) {
-    const ESCAPE_LEVEL = [
-      '#c1c5f5',
-      '#abafeb',
-      '#959be6',
-      '#7d84e3',
-      '#626ade',
-      '#2732cf',
-      '#0713ba',
-      '#040d87',
-      '#c1c5f5',
-      '#abafeb',
-      '#959be6',
-      '#7d84e3',
-      '#626ade',
-      '#2732cf',
-      '#0713ba',
-      '#040d87',
-      '#c1c5f5',
-      '#abafeb',
-      '#959be6',
-      '#7d84e3',
-      '#626ade',
-      '#2732cf',
-      '#0713ba',
-      '#040d87',
-      '#c1c5f5',
-      '#abafeb',
-      '#959be6',
-      '#7d84e3',
-      '#626ade',
-      '#2732cf',
-      '#0713ba',
-      '#040d87',
-      '#c1c5f5',
-      '#abafeb',
-      '#959be6',
-      '#7d84e3',
-      '#626ade',
-      '#2732cf',
-      '#0713ba',
-      '#040d87',
-      '#c1c5f5',
-      '#abafeb',
-      '#959be6',
-    ].reverse();
-
-    for (let i = 0; i < ESCAPE_LEVEL.length; i++) {
+    for (let i = 0; i < this.COLOR_SET.length; i++) {
       z = this.f(z, l);
       if (!(z.re**2 + z.im**2 < this.escapeRadius**2)) {
-        return ESCAPE_LEVEL[i];
+        return this.COLOR_SET[i];
       }
     }
-    
     return '#000000';
   }
 
@@ -174,7 +233,7 @@ export class JuliaSetsComponent implements OnInit {
     return MathJS.complex(z.x, z.y);
   }
 
-  lambda:string = '-0.54 + 0.525911i';
+  lambda:string = '0.36510416666666656 + 0.6507440476190476i';
   fz:string = "1";
 
   f(z, l):any {
@@ -185,8 +244,40 @@ export class JuliaSetsComponent implements OnInit {
         return MathJS.add(MathJS.pow(z, 2), l);
       case 3:
         return MathJS.add(MathJS.subtract(MathJS.pow(z, 4), MathJS.pow(z, 2)), l);
+      case 4:
+        return MathJS.add(MathJS.multiply(l, MathJS.pow(z, 3)), MathJS.add(MathJS.pow(z, 2), l));
       default:
-        return MathJS.add(MathJS.add(MathJS.pow(z, 7), MathJS.pow(z, 3)), l);
+        return MathJS.add(MathJS.pow(z, 2), l);
+    }
+  }
+
+  fnewton(z, l, iterations) {
+    for (let i = 0; i < iterations; i++) {
+      z = MathJS.subtract(z, MathJS.divide(this.f(z, l), this.fderivative(z, l)));
+    }
+    return z;
+  }
+
+  fderivative(z, l) {
+    switch (parseInt(this.fz)) {
+      case 1:
+        return MathJS.add(
+                MathJS.multiply(7, MathJS.pow(z, 6)),
+                MathJS.multiply(3, MathJS.pow(z, 2)));
+      case 2:
+        return MathJS.multiply(z, 2);
+      case 3:
+        return MathJS.subtract(
+                MathJS.multiply(4, MathJS.pow(z, 3)),
+                MathJS.multiply(2, z));
+      case 4:
+        return MathJS.add(
+                MathJS.multiply(
+                  MathJS.multiply(l, MathJS.complex(3, 0)),
+                  MathJS.pow(z, 2)),
+                MathJS.multiply(z, MathJS.complex(2, 0)));
+      default:
+        return MathJS.multiply(z, 2);
     }
   }
 
