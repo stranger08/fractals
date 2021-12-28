@@ -30,6 +30,10 @@
     height: 80vh;
 }
 
+p {
+  font-size: 12px;
+}
+
 .loader-container {
     position: absolute;
     top: 50%;

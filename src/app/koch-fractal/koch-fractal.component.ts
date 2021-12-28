@@ -21,7 +21,7 @@ export class KochFractalComponent {
   public context: CanvasRenderingContext2D;
 
   constructor() {
-    Chart.register(...registerables);
+    // Chart.register(...registerables);
   }
 
   message: string = "";

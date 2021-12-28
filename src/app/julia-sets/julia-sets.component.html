@@ -64,7 +64,11 @@
             &nbsp;
             <button (click)="redrawJulia();">Draw Julia</button>
             &nbsp;
+            <br />
+            <br />
             <button (click)="redrawNewton();">Draw Newton</button>
+            &nbsp;
+            <button (click)="clear();">Reset Scene</button>
             <br />
             <div *ngIf="showRoots">
                 <p *ngFor="let root of roots">
@@ -72,7 +76,7 @@
                 </p>
             </div>
             <br />
-            <button (click)="clear();">Reset Scene</button>
+            
         </div>
      </div>
  </section>

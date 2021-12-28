@@ -29,8 +29,8 @@ export class DynamicSystemComponent implements OnInit {
   async initScene() {
     this.sceneNative = this.scene.nativeElement;
     let context = this.sceneNative.getContext('2d');
-    context.canvas.width = window.innerWidth * 3/4;
-    context.canvas.height = window.innerHeight * 8/10;
+    context.canvas.width = window.innerWidth * 65/100;
+    context.canvas.height = window.innerHeight * 65/100;
   }
 
   loading = false;
@@ -174,7 +174,7 @@ export class DynamicSystemComponent implements OnInit {
     ];
 
 
-    for (let a = 0; a < 50; a = a + 0.0625) {
+    for (let a = 0; a < 70; a = a + 0.0625) {
       let x = this.x0;
       for (let i = 0; i < 250; i++) {
         let y = (a * x) / ((1 + this.r * x) ** 5);
